@@ -62,6 +62,25 @@ def logout():
     return redirect(url_for('home'))
 
 
+@app.route('/filelisting')
+def file_listing():
+    """List of uploaded files displayed"""
+    # Route accessible to authorized users only
+    if not session.get('logged_in'):
+        abort(401)
+    
+    file_list = [] #Stores the list of files
+    
+    rootdir = os.getcwd() #Retrieves root directory
+    
+    for subdir, dirs, files in os.walk(rootdir + '/app/static/uploads'):
+        for file in files:
+            # print os.path.join(subdir, file) 
+            file_list.append(file)
+        
+    return render_template('upload.html', file_list=file_list)
+
+
 ###
 # The functions below should be applicable to all Flask apps.
 ###
