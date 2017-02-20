@@ -10,6 +10,7 @@
     {% if file.rsplit('.', 1)[1].lower() == 'jpg' or file.rsplit('.', 1)[1].lower() == 'jpeg' %}
         <figure class="figure">
             <img src="{{ url_for('static', filename='uploads/'+ file) }}" alt="{{ file }}" class="figure-img img-thumbnail" height="350" width="350">
+            <figcaption class="figure-caption"><a href="{{ url_for('static',filename= 'uploads/' + file )}}">{{ file }}</a></figcaption>
         </figure>    
     {% else %}
         <a href="{{ url_for('static', filename='uploads/'+ file) }}">{{ file }}</a>
